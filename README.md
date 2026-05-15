@@ -59,8 +59,8 @@ Update `.env`:
 
 ```env
 APP_NAME="Laravel CRUD"
-APP_ENV=local
-APP_DEBUG=true
+APP_ENV=development
+APP_DEBUG=false
 APP_URL=http://IP_VPS_ANDA
 
 DB_CONNECTION=mysql
@@ -72,7 +72,8 @@ DB_PASSWORD=GANTI_PASSWORD_AMAN_ANDA
 ```
 
 > **Penting:** jangan gunakan password contoh. Ganti dengan password unik yang kuat.  
-> Nilai `APP_ENV=local` dipakai untuk tahap awal setup/debug. Untuk VPS non-production, Anda juga bisa memakai `APP_ENV=development` atau `APP_ENV=staging` sesuai lingkungan.  
+> Untuk VPS non-production, gunakan `APP_ENV=development` atau `APP_ENV=staging` sesuai lingkungan dan tetap jaga `APP_DEBUG=false`.  
+> Jika butuh debugging, aktifkan `APP_DEBUG=true` sementara dan batasi akses hanya untuk admin.
 > Saat aplikasi siap dipublikasikan, ubah ke:
 >
 > ```env
@@ -177,7 +178,7 @@ Isi `routes/web.php`:
 use App\Http\Controllers\ProductController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', fn () => redirect()->route('products.index'));
+Route::redirect('/', '/products');
 Route::resource('products', ProductController::class)->except(['show']);
 ```
 
@@ -247,12 +248,15 @@ mkdir -p resources/views/products
 
         <label>Nama</label><br>
         <input type="text" name="name" value="{{ old('name', $product?->name) }}"><br><br>
+        @error('name') <p>{{ $message }}</p> @enderror
 
         <label>Deskripsi</label><br>
         <textarea name="description">{{ old('description', $product?->description) }}</textarea><br><br>
+        @error('description') <p>{{ $message }}</p> @enderror
 
         <label>Harga</label><br>
         <input type="number" step="0.01" name="price" value="{{ old('price', $product?->price) }}"><br><br>
+        @error('price') <p>{{ $message }}</p> @enderror
 
         <button type="submit">Simpan</button>
     </form>
