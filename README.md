@@ -6,7 +6,7 @@ Panduan ini berisi implementasi **CRUD sederhana** dengan Laravel dan MySQL yang
 
 ```bash
 sudo apt update && sudo apt upgrade -y
-sudo apt install -y nginx mysql-server php-fpm php-mysql php-xml php-mbstring php-curl php-zip unzip git curl
+sudo apt install -y nginx mysql-server php8.2-fpm php8.2-mysql php8.2-xml php8.2-mbstring php8.2-curl php8.2-zip unzip git curl
 ```
 
 Instal Composer:
@@ -235,13 +235,13 @@ mkdir -p resources/views/products
         @isset($product) @method('PUT') @endisset
 
         <label>Nama</label><br>
-        <input type="text" name="name" value="{{ old('name', $product?->name ?? '') }}"><br><br>
+        <input type="text" name="name" value="{{ old('name', $product?->name) }}"><br><br>
 
         <label>Deskripsi</label><br>
-        <textarea name="description">{{ old('description', $product?->description ?? '') }}</textarea><br><br>
+        <textarea name="description">{{ old('description', $product?->description) }}</textarea><br><br>
 
         <label>Harga</label><br>
-        <input type="number" step="0.01" name="price" value="{{ old('price', $product?->price ?? '') }}"><br><br>
+        <input type="number" step="0.01" name="price" value="{{ old('price', $product?->price) }}"><br><br>
 
         <button type="submit">Simpan</button>
     </form>
