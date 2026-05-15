@@ -235,10 +235,10 @@ mkdir -p resources/views/products
         @isset($product) @method('PUT') @endisset
 
         <label>Nama</label><br>
-        <input type="text" name="name" value="{{ old('name', $product->name ?? '') }}"><br><br>
+        <input type="text" name="name" value="{{ old('name', $product?->name ?? '') }}"><br><br>
 
         <label>Deskripsi</label><br>
-        <textarea name="description">{{ old('description', $product->description ?? '') }}</textarea><br><br>
+        <textarea name="description">{{ old('description', $product?->description ?? '') }}</textarea><br><br>
 
         <label>Harga</label><br>
         <input type="number" step="0.01" name="price" value="{{ old('price', $product?->price ?? '') }}"><br><br>
