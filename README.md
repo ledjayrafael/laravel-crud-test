@@ -72,6 +72,7 @@ DB_PASSWORD=GANTI_PASSWORD_AMAN_ANDA
 ```
 
 > **Penting:** jangan gunakan password contoh. Ganti dengan password unik yang kuat.  
+> Nilai `APP_ENV=local` dipakai untuk tahap awal setup/debug. Untuk VPS non-production, Anda juga bisa memakai `APP_ENV=development` atau `APP_ENV=staging` sesuai lingkungan.  
 > Saat aplikasi siap dipublikasikan, ubah ke:
 >
 > ```env
