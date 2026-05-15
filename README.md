@@ -32,6 +32,8 @@ Atur permission:
 
 ```bash
 sudo chown -R www-data:www-data /var/www/laravel-crud
+sudo find /var/www/laravel-crud -type d -exec chmod 755 {} \;
+sudo find /var/www/laravel-crud -type f -exec chmod 644 {} \;
 sudo chmod -R 775 /var/www/laravel-crud/storage /var/www/laravel-crud/bootstrap/cache
 ```
 
@@ -47,7 +49,7 @@ Jalankan query:
 
 ```sql
 CREATE DATABASE laravel_crud;
-CREATE USER 'laravel_user'@'localhost' IDENTIFIED BY 'StrongPassword123!';
+CREATE USER 'laravel_user'@'localhost' IDENTIFIED BY 'GANTI_PASSWORD_AMAN_ANDA';
 GRANT ALL PRIVILEGES ON laravel_crud.* TO 'laravel_user'@'localhost';
 FLUSH PRIVILEGES;
 EXIT;
@@ -57,8 +59,8 @@ Update `.env`:
 
 ```env
 APP_NAME="Laravel CRUD"
-APP_ENV=production
-APP_DEBUG=false
+APP_ENV=local
+APP_DEBUG=true
 APP_URL=http://IP_VPS_ANDA
 
 DB_CONNECTION=mysql
@@ -66,8 +68,16 @@ DB_HOST=127.0.0.1
 DB_PORT=3306
 DB_DATABASE=laravel_crud
 DB_USERNAME=laravel_user
-DB_PASSWORD=StrongPassword123!
+DB_PASSWORD=GANTI_PASSWORD_AMAN_ANDA
 ```
+
+> **Penting:** jangan gunakan password contoh. Ganti dengan password unik yang kuat.  
+> Saat aplikasi siap dipublikasikan, ubah ke:
+>
+> ```env
+> APP_ENV=production
+> APP_DEBUG=false
+> ```
 
 ## 4) Implementasi CRUD (Products)
 
