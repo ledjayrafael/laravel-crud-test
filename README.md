@@ -128,7 +128,7 @@ class ProductController extends Controller
         $validated = $request->validate([
             'name' => 'required|max:255',
             'description' => 'nullable',
-            'price' => 'required|numeric|min:0',
+            'price' => 'required|decimal:0,2|min:0',
         ]);
 
         Product::create($validated);
@@ -145,7 +145,7 @@ class ProductController extends Controller
         $validated = $request->validate([
             'name' => 'required|max:255',
             'description' => 'nullable',
-            'price' => 'required|numeric|min:0',
+            'price' => 'required|decimal:0,2|min:0',
         ]);
 
         $product->update($validated);
@@ -241,7 +241,7 @@ mkdir -p resources/views/products
         <textarea name="description">{{ old('description', $product->description ?? '') }}</textarea><br><br>
 
         <label>Harga</label><br>
-        <input type="number" step="0.01" name="price" value="{{ old('price', $product->price ?? 0) }}"><br><br>
+        <input type="number" step="0.01" name="price" value="{{ old('price', $product->price ?? '') }}"><br><br>
 
         <button type="submit">Simpan</button>
     </form>
